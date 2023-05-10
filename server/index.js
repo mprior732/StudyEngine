@@ -64,10 +64,10 @@ app.post("/users", async (req, res) => {
 app.post("/courses", async (req, res) => {
     try {
 
-        const { userid, username, course } = req.body;
+        const { username, course } = req.body;
         
-        const newCourse = await pool.query("INSERT INTO courses (userid, username, course) VALUES($1, $2, $3)", 
-        [userid, username, course]
+        const newCourse = await pool.query("INSERT INTO courses (username, course) VALUES($1, $2)", 
+        [username, course]
         );
 
         res.json(newCourse.rows[0]);
@@ -109,9 +109,37 @@ app.get("/courses/:user", async(req, res) => {
 });
 
 //update course
+app.put("/courses/:courseid", async (req, res) => {
+    try {
+
+        const { courseid } = req.params;
+        const { course } = req.body;
+        const updateCourse = await pool.query("UPDATE courses SET course = $1 WHERE courseid = $2",
+        [course, courseid]
+        );
+
+        res.json("Course was updated");
+        
+    } catch (e) {
+        console.log(e.message);
+    }
+})
 
 //delete course
+app.delete("/courses/:courseid", async (req, res) => {
+    try {
+        
+        const { courseid } = req.params;
+        const deleteCourse = await pool.query("DELETE FROM courses WHERE courseid = $1",
+        [courseid]
+        );
 
+        res.json("Course was deleted");
+
+    } catch (e) {
+        console.log(e.message);
+    }
+})
 
 //QUESTIONS
 
@@ -164,8 +192,40 @@ app.get("/questions/:user/:course", async (req, res) => {
 })
 
 //update question
+app.put("/questions/:questionid", async (req, res) => {
+    try {
+        
+        const { questionid } = req.params;
+        const { question, answer} = req.body;
+        const updateQuestion = await pool.query("UPDATE questions SET question = $1 WHERE questionid = $2",
+        [question, questionid]
+        );
+        const updateAnswer = await pool.query("UPDATE questions SET answer = $1 WHERE questionid = $2",
+        [answer, questionid]
+        );
+
+        res.json("Question updated");
+
+    } catch (e) {
+        console.log(e.message);
+    }
+})
 
 //delete question
+app.delete("/questions/:questionid", async (req, res) => {
+    try {
+
+        const { questionid } = req.params;
+        const deleteQuestion = await pool.query("DELETE FROM questions WHERE questionid = $1",
+        [questionid]
+        );
+
+        res.json("Question Deleted");
+        
+    } catch (e) {
+        console.log(e.message);
+    }
+})
 
 
 
