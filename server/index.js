@@ -10,8 +10,7 @@ app.use(express.json()); //allows use of req.body
 
 
 //Global User Variables
-let username;
-let passw;
+let glblUser = '';
 
 //Routes
 
@@ -33,29 +32,30 @@ app.post("/users", async (req, res) => {
     }
 });
 
-//get user
-// app.get("/users/:user", async(req, res) => {
-//     try {
+//user login
+app.get("/login", async (req, res) => {
+    try {
         
-//         const { user } = req.params;
-//         var queryResults;
-//         var clientResp = 'success';
-//         const getUser = await pool.query("SELECT * FROM users WHERE username = $1",
-//         [user],
-//         (err, results) => {
-//             if(err){
-//                 clientResp = 'error';
-//             }
-//             queryResults = Object.assign({}, results);
-//         }
-//         );
+        const { username, pswrd } = req.body;
+        var queryResults;
+        var clientResp;
+        const getUser = await pool.query("SELECT * FROM users WHERE username = $1 AND pswrd = $2",
+        [username, pswrd]
+        );
+        if(getUser.rows.length > 0){
+            glblUser = username;
+            clientResp = 'success';
+        }else{
+            clientResp = 'failed';
+        }
 
-//         res.json(getUser.rows[0]);
+        console.log(glblUser);
+        res.json(getUser.rows[0]);
 
-//     } catch (e) {
-//         console.log(e.message);
-//     }
-// });
+    } catch (e) {
+        console.log(e.message);
+    }
+});
 
 
 //COURSES
