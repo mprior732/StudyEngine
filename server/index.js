@@ -11,18 +11,19 @@ app.use(express.json()); //allows use of req.body
 
 //Global User Variables
 let glblUser = '';
+let glblUserID = '';
 
 //Routes
 
 //USERS
 
 //create new user
-app.post("/users", async (req, res) => {
+app.post("/createAccount", async (req, res) => {
     try {
 
         const { username, pswrd } = req.body;
         
-        const newUser = await pool.query("INSERT INTO users (username, pswrd) VALUES($1, $2)", 
+        const newUser = await pool.query("INSERT INTO users (username, pswrd) VALUES($1, $2) RETURNING *", 
         [username, pswrd]
         );
 
@@ -33,23 +34,15 @@ app.post("/users", async (req, res) => {
 });
 
 //user login
-app.get("/login", async (req, res) => {
+app.post("/login", async (req, res) => {
     try {
         
         const { username, pswrd } = req.body;
-        var queryResults;
-        var clientResp;
+
         const getUser = await pool.query("SELECT * FROM users WHERE username = $1 AND pswrd = $2",
         [username, pswrd]
         );
-        if(getUser.rows.length > 0){
-            glblUser = username;
-            clientResp = 'success';
-        }else{
-            clientResp = 'failed';
-        }
 
-        console.log(glblUser);
         res.json(getUser.rows[0]);
 
     } catch (e) {
@@ -57,6 +50,22 @@ app.get("/login", async (req, res) => {
     }
 });
 
+//check if username exists
+app.post("/checkUsrnme", async (req, res) => {
+    try {
+        
+        const { username} = req.body;
+
+        const getUser = await pool.query("SELECT * FROM users WHERE username = $1",
+        [username]
+        );
+
+        res.json(getUser.rows[0]);
+
+    } catch (e) {
+        console.log(e.message);
+    }
+});
 
 //COURSES
 

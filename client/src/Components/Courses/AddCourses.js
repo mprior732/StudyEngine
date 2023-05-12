@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Input } from "../UIElements/Input"
-import { path } from "../../hostConfig"
+import { path } from "../../Utility/hostConfig"
 import "./AddCourses.css"
 
 const AddCourse = () => {
