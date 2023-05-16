@@ -5,9 +5,7 @@ import './App.css';
 //components
 import Login from "./Components/Login/Login"
 import CreateAcc from "./Components/CreateAccount/CreateAccount";
-import AddCourse from "./Components/Courses/AddCourses";
-
-
+import CoursesComponent from "./Components/Courses/Courses";
 
 
 
@@ -19,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" exact Component={Login} />
             <Route path="/createAcc" Component={CreateAcc}/>
+            <Route path="/courses" Component={CoursesComponent} />
           </Routes>
 
         </Fragment>

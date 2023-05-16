@@ -1,6 +1,6 @@
 
 
-.login-container {
+.addCourse-container {
     text-align: center;
     width: 60%;
     height: auto;
@@ -13,6 +13,19 @@
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 }   
 
+.course-container {
+    text-align: center;
+    width: 60%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: .2vh;
+    padding: 5px;
+    background-color: #fafafa;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}  
+
     .title-container {
         padding: 5px;
         position: relative;
@@ -20,6 +33,12 @@
 
         .title-container h1 {
             font-size: 2.5rem;
+            font-weight: 600;
+            color: #61DBFB;
+        }
+
+        .title-container h2 {
+            font-size: 2rem;
             font-weight: 600;
             color: #61DBFB;
         }
@@ -37,7 +56,7 @@
     width: 60%;
     display: flex;
     top: 20%;
-    padding-top: 10px;
+    padding-top: 0px;
     text-align: center;
 }
 
@@ -45,6 +64,30 @@
     background-color: #61DBFB;
     font-weight: 500;
     font-size: 1em;
+    color: #fafafa;
+}
+
+.logout{
+    background-color: #61DBFB;
+    font-weight: 500;
+    font-size: 1em;
+    color: #fafafa;
+    position: absolute;
+    left: 0;
+}
+
+.button_tr {
+    background-color: #61DBFB;
+    font-weight: 800;
+    font-size: 1.2em;
+    color: #fafafa;
+    width: 100%
+}
+
+.button_refresh {
+    background-color: #61DBFB;
+    font-weight: 800;
+    font-size: 1.2em;
     color: #fafafa;
 }
 

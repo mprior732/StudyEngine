@@ -30,7 +30,8 @@ const Login = () => {
                 console.log("success");
                 curUsr.id = response.data.userid;
                 curUsr.username = response.data.username;
-                console.log(curUsr.username)
+                navigate("/courses");
+                //console.log(curUsr.username)
             }
         } catch (err) {
             console.error(err.message);

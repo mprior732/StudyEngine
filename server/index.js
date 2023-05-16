@@ -73,10 +73,11 @@ app.post("/checkUsrnme", async (req, res) => {
 app.post("/courses", async (req, res) => {
     try {
 
-        const { username, course } = req.body;
+        const { userid, course } = req.body;
+        console.log(course);
         
-        const newCourse = await pool.query("INSERT INTO courses (username, course) VALUES($1, $2)", 
-        [username, course]
+        const newCourse = await pool.query("INSERT INTO courses (userid, course) VALUES($1, $2) RETURNING *", 
+        [userid, course]
         );
 
         res.json(newCourse.rows[0]);
@@ -101,21 +102,36 @@ app.get("/courses/:courseid", async(req, res) =>{
 });
 
 //get all courses
-app.get("/courses/:user", async(req, res) => {
+// app.get("/courses/:user", async(req, res) => {
+//     try {
+        
+//         const { username } = req.params;
+
+//         const getUser = await pool.query("SELECT * FROM courses WHERE username = $1",
+//         [username]
+//         );
+
+//         res.json(getUser.rows[0]);
+
+//     } catch (e) {
+//         console.log(e.message);
+//     }
+// });
+
+app.post("/courses/:userid", async (req, res) => {
     try {
         
-        const { user } = req.params;
+        const { userid } = req.params;
 
-        const getUser = await pool.query("SELECT * FROM courses WHERE username = $1",
-        [user]
+        const getCourses = await pool.query("SELECT * FROM courses WHERE userid = $1 ORDER BY course ASC",
+        [userid]
         );
 
-        res.json(getUser.rows[0]);
-
+        res.json(getCourses.rows)
     } catch (e) {
         console.log(e.message);
     }
-});
+})
 
 //update course
 app.put("/courses/:courseid", async (req, res) => {
