@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../UIElements/Input";
 import { path } from "../../Utility/hostConfig";
 import { curUsr } from "../../Utility/User";
+import { curCourse } from "../../Utility/Course";
 import "./Courses.css";
 
 
@@ -31,13 +32,30 @@ const CoursesComponent = () => {
             }else{
                 console.log("success");
                 setNewCourse('')
-                alert("Course added successfully. Please refresh course list to see changes");
-                
+                alert("Course added successfully!");
+                getCourses();
             }
         } catch (error) {
             console.error(error.message);
         };
     };
+
+    const selectCourse = async (course, courseid) => {
+        try {
+
+            const courseInfo = await axios.get(`${path.server}/courses/${course}/${courseid}`)
+
+            curCourse.id = courseInfo.data.courseid;
+            curCourse.course = courseInfo.data.course;
+
+            navigate("/courses/:course/:courseid");
+
+            //console.log(curCourse.course);
+            //console.log(courseInfo.data);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
 
 
@@ -66,9 +84,6 @@ const CoursesComponent = () => {
         navigate("/");
     }
 
-    const refreshList = () =>{
-        getCourses();
-    }
 
 
     return(
@@ -97,15 +112,16 @@ const CoursesComponent = () => {
 
                     <div className='title-container'>
                     <h1 className="text-center mb-3">Course List</h1>
-                    <button className="button_refresh btn mb-2" onClick={refreshList}>Refresh List</button>
                 </div>
 
                 <table className="table">
                     <tbody>
                         {courses.map(c => (
-                            <tr>
+                            <tr key={c.courseid}>
                                 <td>
-                                    <button className="button_tr btn">{c.course}</button>
+                                    <button className="button_tr btn" onClick={() => {
+                                        selectCourse(c.course, c.courseid)
+                                    }}>{c.course}</button>
                                 </td>
                             </tr>
                         ))}

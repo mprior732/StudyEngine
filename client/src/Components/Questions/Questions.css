@@ -67,7 +67,7 @@
     color: #fafafa;
 }
 
-.logout{
+.back{
     background-color: #61DBFB;
     font-weight: 500;
     font-size: 1em;
@@ -76,19 +76,8 @@
     left: 0;
 }
 
-.button_tr {
-    background-color: #61DBFB;
-    font-weight: 800;
-    font-size: 1.2em;
-    color: #fafafa;
-    width: 100%
-}
-
-.button_refresh {
-    background-color: #61DBFB;
-    font-weight: 800;
-    font-size: 1.2em;
-    color: #fafafa;
+.q-content {
+    width: 50%;
 }
 
 .del-btn {
@@ -98,24 +87,31 @@
     color: #fafafa;
 }
 
-.sub-btn {
-    background-color: #61DBFB;
+.edt-btn {
+    background-color: #54f561;
     font-weight: 500;
     font-size: 1em;
     color: #fafafa;
 }
 
-.edt-btn-nav {
-    background-color: #54f561;
+.del-btn-nav {
+    background-color: #e03838;
     font-weight: 700;
-    font-size: 1.25em;
+    font-size: 1.2em;
     color: #fafafa;
-
 }
 
-.modal-btns {
-    position: relative;
+.button-nav {
+    background-color: #61DBFB;
+    font-weight: 700;
+    font-size: 2em;
+    color: #fafafa;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.btn-container {
+    padding: 10px;
     margin: auto;
+    align-items: center;
 }
-
-

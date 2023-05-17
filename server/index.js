@@ -87,7 +87,7 @@ app.post("/courses", async (req, res) => {
 });
 
 //get course
-app.get("/courses/:courseid", async(req, res) =>{
+app.get("/courses/:course/:courseid", async(req, res) =>{
     try {
 
         const { courseid } = req.params;
@@ -95,29 +95,14 @@ app.get("/courses/:courseid", async(req, res) =>{
         [courseid]
         );
         
+        console.log(courses.rows[0])
         res.json(courses.rows[0]);
     } catch (e) {
         console.log(e.message);
     }
 });
 
-//get all courses
-// app.get("/courses/:user", async(req, res) => {
-//     try {
-        
-//         const { username } = req.params;
-
-//         const getUser = await pool.query("SELECT * FROM courses WHERE username = $1",
-//         [username]
-//         );
-
-//         res.json(getUser.rows[0]);
-
-//     } catch (e) {
-//         console.log(e.message);
-//     }
-// });
-
+//get all courses by user id
 app.post("/courses/:userid", async (req, res) => {
     try {
         
@@ -155,6 +140,9 @@ app.delete("/courses/:courseid", async (req, res) => {
     try {
         
         const { courseid } = req.params;
+        const deleteQuestions = await pool.query("DELETE FROM questions WHERE courseid = $1",
+        [courseid]
+        );
         const deleteCourse = await pool.query("DELETE FROM courses WHERE courseid = $1",
         [courseid]
         );
@@ -201,12 +189,12 @@ app.get("/questions/:questionid", async (req, res) => {
 })
 
 //get all questions
-app.get("/questions/:user/:course", async (req, res) => {
+app.post("/questions/:username/:courseid", async (req, res) => {
     try {
 
-        const { user, course } = req.params;
-        const AllQuestions = await pool.query("SELECT * FROM questions WHERE username = $1 AND courseid = $2",
-        [user, course]
+        const { username, courseid } = req.params;
+        const AllQuestions = await pool.query("SELECT * FROM questions WHERE username = $1 AND courseid = $2 ORDER BY questionid DESC",
+        [username, courseid]
         );
 
         res.json(AllQuestions.rows);
