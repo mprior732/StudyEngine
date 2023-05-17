@@ -45,6 +45,7 @@ const QuestionsComponent = () => {
         };
     };
 
+    //delete
     const selectQuestion = async (questionid) => {
         try {
 
@@ -97,7 +98,7 @@ const QuestionsComponent = () => {
             let courseid = curCourse.id;
             // console.log(courseid);
             // console.log(username);
-            axios.post(`${path.server}/questions/${username}/${courseid}`).then(
+            await axios.post(`${path.server}/questions/${username}/${courseid}`).then(
                 (response) => {
                     //console.log(response.data)
                     const questionData = response.data;
@@ -124,6 +125,10 @@ const QuestionsComponent = () => {
         getQuestions();
     }
 
+    const handleStudy = () => {
+        navigate("/courses/flashapp");
+    }
+
 
 
     return(
@@ -133,19 +138,19 @@ const QuestionsComponent = () => {
                 
                     <div className='title-container'>
                         <button className="back btn ml-2" onClick={handleBack}>Back</button>
-                        <h1 className=" course text-center mb-5 mt-5">{curCourse.course} </h1>
+                        <h1 className=" course text-center mr-3 mb-3 mt-5">{curCourse.course} </h1>
                     </div>
                     <div className='btn-container'>
                         <div>
                             <EditCourse />
-                            <button className="button-nav btn mb-2">Study</button>
+                            <button className="button-nav btn mb-2" onClick={handleStudy}>Study</button>
                             <button className="del-btn-nav btn ml-5" onClick={() => {
                                 deleteCourse(curCourse.id)
                             }}>Delete Course</button>
                         </div>
                     </div>
                     <div className='title-container'>
-                        <h2 className="text-center mt-5">Add Question</h2>
+                        <h2 className="text-center mt-3">Add Question</h2>
                     </div>
             
                     <form onSubmit={handleAddQuestion}>
@@ -165,15 +170,15 @@ const QuestionsComponent = () => {
                                 onChange={(e) => setAnswer(e.target.value)}
                             />
                         </div>
-                        <div className="btn-container mb-4">
+                        <div className="btn-container mb-2">
                             <button className="button btn">Submit</button>
 
                         </div>
                     </form>
 
                     <div className='title-container'>
-                    <h2 className="text-center mb-3">Question List</h2>
-                    <button className="button btn" onClick={handleRefresh}>Refresh</button>
+                    <h2 className="text-center mb-2">Question List</h2>
+                    <button className="button btn mb-1" onClick={handleRefresh}>Refresh</button>
                 </div>
 
                 <table className="table">

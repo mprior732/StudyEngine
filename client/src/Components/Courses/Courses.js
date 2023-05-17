@@ -93,7 +93,7 @@ const CoursesComponent = () => {
                 
                     <div className='title-container'>
                         <button className="logout btn ml-2" onClick={handleLogout}>Logout</button>
-                        <h1 className="text-center">Welcome, {username} </h1>
+                        <h1 className="text-center mt-5">Welcome, <span className="displayUser">{username}</span> </h1>
                         <h2 className="text-center">Add a Course</h2>
                     </div>
             

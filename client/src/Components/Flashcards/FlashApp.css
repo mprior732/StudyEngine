@@ -1,0 +1,70 @@
+.flashApp-container {
+    text-align: center;
+    width: 80%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 13vh;
+    padding: 5px;
+    background-color: #fafafa;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}   
+
+.card-grid {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: .25rem;
+    box-shadow: 0 0 5px 2px rgb(0, 0, 0, .3);
+    background-color: #61DBFB;
+    width: 200px;
+    cursor: pointer;
+    transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
+    transform-style: preserve-3d;
+    transition: 150ms;
+    left: 1%;
+}
+
+.card:hover {
+    --translate-y: -2px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .4);
+}
+
+.card.flip {
+    --rotate-y: 180deg;
+}
+
+.card .card-front,
+.card .card-back {
+    position: absolute;
+    padding: 1rem;
+    backface-visibility: hidden;
+}
+
+.card .card-back {
+    transform: rotateY(180deg);
+    font-size: 1rem;
+    color: #0d02a3;
+    font-weight: 700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.card .card-front {
+    font-size: .8rem;
+    color: #fafafa;
+    font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+

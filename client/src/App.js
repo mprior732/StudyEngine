@@ -7,6 +7,7 @@ import Login from "./Components/Login/Login"
 import CreateAcc from "./Components/CreateAccount/CreateAccount";
 import CoursesComponent from "./Components/Courses/Courses";
 import QuestionsComponent from "./Components/Questions/AddQuestions";
+import FlashcardApp from "./Components/Flashcards/FlashcardApp";
 
 
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/createAcc" Component={CreateAcc}/>
             <Route path="/courses" Component={CoursesComponent} />
             <Route path="/courses/:course/:courseid" Component={QuestionsComponent} />
+            <Route path="/courses/flashapp" Component={FlashcardApp} />
           </Routes>
 
         </Fragment>
