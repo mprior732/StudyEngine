@@ -21,7 +21,7 @@ const Login = () => {
             const body = {username, pswrd};
             const response = await axios.post(path.server + "/login", body);
 
-            console.log(response.data);
+            //console.log(response.data);
 
             if(!Object.keys(response.data).length){
                 console.log("failed");
@@ -31,7 +31,6 @@ const Login = () => {
                 curUsr.id = response.data.userid;
                 curUsr.username = response.data.username;
                 navigate("/courses");
-                //console.log(curUsr.username)
             }
         } catch (err) {
             console.error(err.message);
