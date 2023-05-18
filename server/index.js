@@ -9,10 +9,6 @@ app.use(cors());
 app.use(express.json()); //allows use of req.body
 
 
-//Global User Variables
-let glblUser = '';
-let glblUserID = '';
-
 //Routes
 
 //USERS

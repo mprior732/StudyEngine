@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Input } from "../UIElements/Input";
 import { path } from "../../Utility/hostConfig";
 import "./Questions.css";
 
