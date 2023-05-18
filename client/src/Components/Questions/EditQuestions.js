@@ -22,7 +22,7 @@ const EditQuestion = ({q}) => {
 
             //console.log(response.data)
             
-            navigate("/courses/:course/:courseid")
+            navigate("/courses/course")
             alert("Refresh Question List to see changes")
 
         } catch (error) {

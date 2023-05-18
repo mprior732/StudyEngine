@@ -5,7 +5,6 @@ import { path } from "../../Utility/hostConfig";
 import { curUsr } from "../../Utility/User";
 import { curCourse } from "../../Utility/Course";
 
-
 import FlashcardList from "./FlashcardList";
 import "./FlashApp.css";
 
@@ -17,13 +16,13 @@ const FlashcardApp = () => {
 
     //function to shuffle the flashcards around after each refresh
     function shuffle(array) {
-        let currIndex = array.length,
-        randInd;
+        let currIndex = array.length, randInd;
+        
         while (currIndex !== 0) {
-        randInd = Math.floor(Math.random() * currIndex);
-        currIndex--;
+            randInd = Math.floor(Math.random() * currIndex);
+            currIndex--;
 
-        [array[currIndex], array[randInd]] = [array[randInd], array[currIndex]];
+            [array[currIndex], array[randInd]] = [array[randInd], array[currIndex]];
         }
         return array;
     }
@@ -39,13 +38,15 @@ const FlashcardApp = () => {
                     //console.log(response.data)
                     const questionData = response.data;
 
-                    //To display at most 12 questions
-                    if(questionData.length <= 12){
-                        shuffle(questionData);
+                    shuffle(questionData);
+
+                    //To display at most 15 questions
+                    if(questionData.length <= 15){
+                        
                         setFlashcards(questionData);
                     } else{
-                        shuffle(questionData);
-                        let firstNQuestions = questionData.slice(0, 12);
+
+                        let firstNQuestions = questionData.slice(0, 15);
                         setFlashcards(firstNQuestions);
                     }
                     
@@ -62,7 +63,7 @@ const FlashcardApp = () => {
     }, [])
 
     const handleBack = () => {
-        navigate("/courses/:course/:courseid")
+        navigate("/courses/course")
     }
 
     const handleShuffle = () => {

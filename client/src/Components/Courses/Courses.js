@@ -29,6 +29,7 @@ const CoursesComponent = () => {
             console.log(response.data);
             if(!Object.keys(response.data)){
                 console.log("failed");
+                alert("There was a problem adding the course. Try again later");
             }else{
                 console.log("success");
                 setNewCourse('')
@@ -43,21 +44,17 @@ const CoursesComponent = () => {
     const selectCourse = async (course, courseid) => {
         try {
 
-            const courseInfo = await axios.get(`${path.server}/courses/${course}/${courseid}`)
+            const courseInfo = await axios.get(`${path.server}/courses/${course}/${courseid}`);
 
             curCourse.id = courseInfo.data.courseid;
             curCourse.course = courseInfo.data.course;
 
-            navigate("/courses/:course/:courseid");
+            navigate("/courses/course");
 
-            //console.log(curCourse.course);
-            //console.log(courseInfo.data);
         } catch (error) {
             console.log(error.message);
         }
     }
-
-
 
     const getCourses = async () => {
         try {

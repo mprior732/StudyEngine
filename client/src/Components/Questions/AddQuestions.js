@@ -32,7 +32,7 @@ const QuestionsComponent = () => {
             const body = { courseid, username, question, answer };
             const response = await axios.post(path.server + "/questions", body);
 
-            console.log(response.data);
+            //console.log(response.data);
             if(!Object.keys(response.data)){
                 console.log("failed");
             }else{
@@ -138,12 +138,12 @@ const QuestionsComponent = () => {
                 
                     <div className='title-container'>
                         <button className="back btn ml-2" onClick={handleBack}>Back</button>
-                        <h1 className=" course text-center mr-3 mb-3 mt-5">{curCourse.course} </h1>
+                        <h1 className="course text-center mr-3 mb-3 mt-5">{curCourse.course} </h1>
                     </div>
                     <div className='btn-container'>
-                        <div>
+                        <div className="btn-nav-container">
                             <EditCourse />
-                            <button className="button-nav btn mb-2" onClick={handleStudy}>Study</button>
+                            <button className="button-nav btn mb-2 mt-2" onClick={handleStudy}>Study</button>
                             <button className="del-btn-nav btn ml-5" onClick={() => {
                                 deleteCourse(curCourse.id)
                             }}>Delete Course</button>

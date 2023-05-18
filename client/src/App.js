@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css';
+import { curUsr } from "./Utility/User";
+import { curCourse } from "./Utility/Course";
 
 //components
 import Login from "./Components/Login/Login"
@@ -20,7 +21,7 @@ function App() {
             <Route path="/" exact Component={Login} />
             <Route path="/createAcc" Component={CreateAcc}/>
             <Route path="/courses" Component={CoursesComponent} />
-            <Route path="/courses/:course/:courseid" Component={QuestionsComponent} />
+            <Route path="/courses/course" Component={QuestionsComponent} />
             <Route path="/courses/flashapp" Component={FlashcardApp} />
           </Routes>
 

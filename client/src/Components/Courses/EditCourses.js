@@ -21,9 +21,9 @@ const EditCourse = () => {
             const body = { course };
             const response = await axios.put(`${path.server}/courses/${courseid}`, body);
 
-            console.log(response.data)
+            //console.log(response.data)
             curCourse.course = course;
-            navigate("/courses/:course/:courseid")
+            navigate("/courses/course")
 
         } catch (error) {
             console.log(error.message)
